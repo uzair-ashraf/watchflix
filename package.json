@@ -2,9 +2,10 @@
   "name": "watchflix",
   "version": "1.0.0",
   "description": "A fullstack application to mimic netflix",
-  "main": "main.js",
+  "main": "server/public/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode=production",
+    "dev": "webpack-dev-server"
   },
   "dependencies": {
     "axios": "^0.19.0",

@@ -1,0 +1,66 @@
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Gothic A1', sans-serif;
+  color: white;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+button {
+  background-color: #DB202C;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  font-family: 'Gothic A1', sans-serif;
+  font-size: 1.4rem;
+  padding: 0 2.4rem;
+}
+.container {
+  height: 100vh;
+}
+.home-page-container {
+  height: 100vh;
+  position: relative;
+  background-image: url("assets/images/background1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.home-page-filter {
+height: 100%;
+width: 100%;
+position: absolute;
+background-color: black;
+opacity: 0.5;
+z-index: -1;
+}
+.navbar {
+  height: 5vh;
+  padding: .4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.landing-page {
+  height: 82vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px;
+}
+.landing-page > * {
+  margin: 0.5rem 0;
+}
+.landing-main-header {
+  font-size: 2rem;
+}
+.landing-main-subheader {
+  font-size: 1.3rem
+}
+.landing-button {
+  margin: 0.5rem 1rem;
+  padding: 8px
+}
