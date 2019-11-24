@@ -4,20 +4,21 @@ import { withRouter } from 'react-router-dom';
 class Navbar extends React.Component {
   render() {
     const handleClick = () => {
-      this.props.history.push('/signup');
+      this.props.history.push('/signin');
     };
     const { pathname } = this.props.location;
-    if (pathname === '/signup') {
-      return (
-        <div className="navbar">
-          <img src="assets/images/logo.png" alt="Watch flix logo" />
-        </div>
-      );
+    let navbarSecondbutton = null;
+    switch (pathname) {
+      case '/':
+        navbarSecondbutton = (
+          <button onClick={handleClick} className="home-page-signin">Sign In</button>
+        );
+        break;
     }
     return (
       <div className="navbar">
         <img src="assets/images/logo.png" alt="Watch flix logo" />
-        <button onClick={handleClick} className="home-page-signin">Sign In</button>
+        {navbarSecondbutton}
       </div>
     );
   }

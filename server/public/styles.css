@@ -35,7 +35,7 @@ button {
   display: flex;
   justify-content: space-between;
 }
-.landing-page {
+.landing-page,.signin-form {
   height: 82vh;
   text-align: center;
   display: flex;
@@ -43,7 +43,8 @@ button {
   justify-content: center;
   padding: 14px;
 }
-.landing-page > * {
+.landing-page > *,
+.signin-form > * {
   margin: 0.5rem 0;
 }
 .landing-main-header {
@@ -52,10 +53,21 @@ button {
 .landing-main-subheader {
   font-size: 1.3rem
 }
-.landing-button {
+.landing-button, .signin-button {
   padding:  .4rem .8rem;
 }
-
+.signin-form {
+  height: 60vh;
+}
+.signin-dropdown {
+ border-radius: 5px;
+ padding: 10px;
+ text-align: center;
+}
+.signin-heading {
+  font-size: 3rem;
+  margin: 20px 0 0 20px;
+}
 /* @media (min-width: 768px){
 
 .landing-button {
