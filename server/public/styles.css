@@ -19,6 +19,7 @@ button {
 }
 .container {
   height: 100vh;
+  background-color: #141414;
 }
 .home-page-container {
   height: 100vh;
@@ -27,15 +28,6 @@ button {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: -1;
-}
-.home-page-filter {
-height: 100%;
-width: 100%;
-position: absolute;
-background-color: black;
-opacity: 0.5;
-z-index: -1;
 }
 .navbar {
   height: 5vh;
@@ -61,6 +53,27 @@ z-index: -1;
   font-size: 1.3rem
 }
 .landing-button {
-  margin: 0.5rem 1rem;
-  padding: 8px
+  padding:  .4rem .8rem;
 }
+
+/* @media (min-width: 768px){
+
+.landing-button {
+  margin: 0.5rem 20%
+}
+
+}
+
+@media (min-width: 1024px){
+
+.landing-button {
+  margin: 0.5rem 40%
+}
+
+}
+
+@media (min-width: 1200px){
+
+
+
+} */
