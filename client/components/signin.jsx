@@ -1,8 +1,10 @@
 import React from 'react';
 import { getUsers } from '../api/apis';
+import { signInUser } from '../actions/addUserAction';
+import { connect } from 'react-redux';
 import Navbar from './navbar';
 
-export default class SignIn extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +25,8 @@ export default class SignIn extends React.Component {
   signIn(e) {
     e.preventDefault();
     if (!this.state.selectedUser) return;
+    this.props.dispatch(signInUser(this.state.selectedUser))
+      .then(() => this.props.history.push('/dashboard'));
   }
   render() {
     return (
@@ -38,7 +42,7 @@ export default class SignIn extends React.Component {
               return (
                 <option
                   key={user.user_id}
-                  value={user.id}
+                  value={user.user_id}
                 >
                   {user.username}
                 </option>
@@ -51,3 +55,5 @@ export default class SignIn extends React.Component {
     );
   }
 }
+
+export default connect()(SignIn);
