@@ -14,6 +14,11 @@ class Navbar extends React.Component {
           <button onClick={handleClick} className="home-page-signin">Sign In</button>
         );
         break;
+      case '/dashboard':
+        navbarSecondbutton = (
+          <input className="search-bar" placeholder="Search" />
+        );
+        break;
     }
     return (
       <div className="navbar">

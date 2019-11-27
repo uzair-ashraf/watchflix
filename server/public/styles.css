@@ -68,6 +68,19 @@ button {
   font-size: 3rem;
   margin: 20px 0 0 20px;
 }
+.search-bar {
+  background-color: #141414;
+  border: 1px solid #141414;
+  color: white;
+  font-size: .9rem;
+  transition-duration: 300ms;
+  padding: 3px;
+}
+.search-bar:focus {
+  background-color: rgb(105, 105, 105);
+  color: white;
+  border-style: none;
+}
 /* @media (min-width: 768px){
 
 .landing-button {
