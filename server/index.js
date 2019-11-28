@@ -25,7 +25,8 @@ app.get('/api/movies', (req, res, next) => {
   getGeneralMovieData()
     .then(response => {
       res.json(response);
-    });
+    })
+    .catch(err => next(err));
 });
 
 app.listen(process.env.PORT, () => {
