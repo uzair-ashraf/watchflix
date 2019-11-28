@@ -1,5 +1,5 @@
-// const axios = require('axios');
-import axios from 'axios';
+const axios = require('axios');
+// import axios from 'axios';
 
 const movieDb = axios.create({
   baseURL: 'https://api.themoviedb.org/3/'
