@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./database');
+const { getGeneralMovieData } = require('../client/api/movieApi');
 const app = express();
 
 app.use(express.json());
@@ -18,6 +19,14 @@ app.get('/api/users', (req, res, next) => {
       res.json(result.rows);
     })
     .catch(error => next(error));
+});
+
+app.get('/api/movies', (req, res, next) => {
+  getGeneralMovieData()
+    .then(response => {
+      console.log(response);
+      res.json(response);
+    });
 });
 
 app.listen(process.env.PORT, () => {

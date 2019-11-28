@@ -1,11 +1,13 @@
 import axios from 'axios';
+
 export const getUsers = async function () {
-  let res = await axios.get('/api/users');
-  let { data } = res;
+  const res = await axios.get('/api/users');
+  const { data } = res;
   return data;
 };
+
 export const getCompleteUserData = async function (id) {
-  let res = await axios.get(`/api/users?id=${id}`);
-  let { data } = res;
+  const res = await axios.get(`/api/users?id=${id}`);
+  const { data } = res;
   return data;
 };
