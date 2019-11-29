@@ -13,26 +13,15 @@ const getGeneralMovieData = async function () {
       count++;
     }
   }
-  const responses = Promise.all(() => randomGenreIds.map(id => {
+  const responses = await Promise.all(randomGenreIds.map(id => {
     return movieDb.get('/discover/movie', {
       params: {
         with_genres: id
       }
     });
   }));
-  console.log(responses);
-  return responses;
-  // console.log(randomGenreIds.join());
-
-  // const generalMovies = await movieDb.get('/discover/movie', {
-  //   params: {
-  //     with_genres: randomGenreIds
-  //   }
-  // });
-  // const { data: movies } = generalMovies;
-
-  // return movies;
-
+  const responseData = responses.map(response => response.data);
+  return responseData;
 };
 
 module.exports = {
