@@ -20,6 +20,7 @@ button {
 .container {
   height: 100vh;
   background-color: #141414;
+  position: relative;
 }
 .home-page-container {
   height: 100vh;
@@ -80,6 +81,19 @@ button {
   background-color: rgb(105, 105, 105);
   color: white;
   border-style: none;
+}
+.loading-screen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("assets/images/loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: black;
+}
+.hidden {
+  display: none;
 }
 /* @media (min-width: 768px){
 
