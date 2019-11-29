@@ -3,6 +3,7 @@ const { movieDb } = require('./movieApi');
 const getGeneralMovieData = async function () {
   const genres = await movieDb.get('/genre/movie/list');
   const { data } = genres;
+  console.log(data);
   const randomGenreIds = [];
   let count = 0;
   while (count < 5) {
@@ -13,6 +14,9 @@ const getGeneralMovieData = async function () {
       count++;
     }
   }
+  console.log(randomGenreIds);
+  const filteredGenres = data.genres.filter(genre => randomGenreIds.includes(genre.id));
+  console.log(filteredGenres);
   const responses = await Promise.all(randomGenreIds.map(id => {
     return movieDb.get('/discover/movie', {
       params: {
@@ -20,7 +24,12 @@ const getGeneralMovieData = async function () {
       }
     });
   }));
-  const responseData = responses.map(response => response.data);
+  const responseData = responses.map((response, index) => {
+    return {
+      genre: filteredGenres[index].name,
+      movies: response.data
+    };
+  });
   return responseData;
 };
 
