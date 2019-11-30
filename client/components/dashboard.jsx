@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './navbar';
 import LoadingScreen from './loadingScreen';
 import Carousel from './carousel';
+import { retrieveMovies } from '../actions/retrieveMoviesAction';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 export default class Dashboard extends React.Component {
