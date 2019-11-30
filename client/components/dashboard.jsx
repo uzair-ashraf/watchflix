@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
 import LoadingScreen from './loadingScreen';
+import Carousel from './carousel';
 import axios from 'axios';
 
 export default class Dashboard extends React.Component {
@@ -23,8 +24,17 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <>
-      <LoadingScreen loaded={this.state.dataLoaded}/>
-      <Navbar/> 
+        <LoadingScreen loaded={this.state.dataLoaded} />
+        <Navbar />
+        {this.state.movieData.map((movie, index) => {
+          return (
+            <Carousel
+              key={index}
+              genre={movie.genre}
+              movies={movie.movies.results}
+            />
+          );
+        })}
       </>
     );
   }

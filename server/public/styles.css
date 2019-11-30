@@ -18,7 +18,7 @@ button {
   padding: 0 2.4rem;
 }
 .container {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #141414;
   position: relative;
 }
@@ -91,6 +91,29 @@ button {
   background-position: center;
   background-size: contain;
   background-color: black;
+}
+.carousel-container {
+  height: 19vh;
+  margin-top: 9px;
+}
+.movie-group-genre {
+  margin: 5px;
+  color: #999999;
+  font-weight: bold;
+  font-size: 1.32rem;
+}
+.movie-group {
+  display: flex;
+  overflow-x: auto;
+}
+.movie {
+  height: 8rem;
+  width: 15rem;
+  flex-shrink: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 8px;
 }
 .hidden {
   display: none;

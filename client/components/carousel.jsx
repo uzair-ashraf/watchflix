@@ -7,14 +7,20 @@ export default class Carousel extends React.Component {
   }
   render() {
     return (
-      <div className="carouselContainer">
-        <div className="movieGroupTitle">
-          {this.props.title}
+      <div className="carousel-container">
+        <div className="movie-group-genre">
+          {this.props.genre}
         </div>
-        <div className="movieGroup">
-          <div className="movie">
-
-          </div>
+        <div className="movie-group">
+          {this.props.movies.map(movie => {
+            return (
+              <CarouselItem
+                key={movie.id}
+                title={movie.title}
+                image={movie.poster_path}
+              />
+            );
+          })}
         </div>
       </div>
     );
