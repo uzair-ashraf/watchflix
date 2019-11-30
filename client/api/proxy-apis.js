@@ -1,6 +1,8 @@
 const { movieDb } = require('./movieApi');
 
 const getGeneralMovieData = async function () {
+  const trending = await movieDb.get('/trending/movie/day');
+  const { data: trendingData } = trending;
   const genres = await movieDb.get('/genre/movie/list');
   const { data } = genres;
   const randomGenreIds = [];
@@ -26,6 +28,10 @@ const getGeneralMovieData = async function () {
       genre: filteredGenres[index].name,
       movies: response.data
     };
+  });
+  responseData.unshift({
+    genre: 'Trending',
+    movies: trendingData
   });
   return responseData;
 };

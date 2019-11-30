@@ -17,7 +17,7 @@ export default class Carousel extends React.Component {
               <CarouselItem
                 key={movie.id}
                 title={movie.title}
-                image={movie.poster_path}
+                image={movie.backdrop_path || movie.poster_path}
               />
             );
           })}
