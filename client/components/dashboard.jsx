@@ -28,6 +28,7 @@ class Dashboard extends React.Component {
             <Carousel
               key={index}
               genre={movie.genre}
+              genreId={index}
               movies={movie.movies.results}
             />
           );
