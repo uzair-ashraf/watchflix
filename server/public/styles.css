@@ -158,6 +158,9 @@ button {
   text-align: center;
   font-size: 2rem;
 }
+.movie-summary {
+  margin: 10px;
+}
 .hidden {
   display: none;
 }

@@ -46,11 +46,11 @@ class Title extends React.Component {
                 name="movie-rating"
                 editing={false}
                 starCount={5}
-                value={Math.floor(this.state.movie.vote_average / 2)}
+                value={Math.ceil(this.state.movie.vote_average / 2)}
               />
             </div>
             <div className="movie-summary">
-
+              {this.state.movie.overview}
             </div>
 
             </>
