@@ -4,23 +4,17 @@ import LoadingScreen from './loadingScreen';
 import Carousel from './carousel';
 import { retrieveMovies } from '../actions/retrieveMoviesAction';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataLoaded: false,
-      movieData: []
+      dataLoaded: false
     };
   }
   componentDidMount() {
-    axios.get('/api/movies')
-      .then(res => {
-        console.log(res.data);
-        this.setState({ dataLoaded: true, movieData: res.data });
-      })
-      .catch(err => console.error(err));
+    this.props.dispatch(retrieveMovies())
+      .then(() => this.setState({ dataLoaded: true }));
   }
 
   render() {
@@ -28,7 +22,7 @@ export default class Dashboard extends React.Component {
       <>
         <LoadingScreen loaded={this.state.dataLoaded} />
         <Navbar />
-        {this.state.movieData.map((movie, index) => {
+        {this.props.movies.map((movie, index) => {
           return (
             <Carousel
               key={index}
@@ -41,3 +35,12 @@ export default class Dashboard extends React.Component {
     );
   }
 }
+
+const mapState = state => {
+  const { movies } = state;
+  return {
+    movies
+  };
+};
+
+export default connect(mapState)(Dashboard);
