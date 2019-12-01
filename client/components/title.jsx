@@ -9,10 +9,15 @@ class Title extends React.Component {
       dataLoaded: false
     };
   }
-
+  componentDidMount() {
+    const { titleId, genreId } = this.props.match.params;
+    const { results } = this.props.movies[genreId].movies;
+    const movieData = results.find(movie => {
+      return movie.id == titleId;
+    });
+    console.log(movieData);
+  }
   render() {
-    console.log(this.props.match.params.titleId);
-    console.log(this.props.movies);
     return (
       <LoadingScreen loaded={this.state.dataLoaded}/>
     );
