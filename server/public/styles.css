@@ -126,6 +126,34 @@ button {
   cursor: pointer;
   color: white;
 }
+.movie-title {
+  margin: 11px 0 45px 10px;
+  color: #999999;
+  font-weight: bold;
+  font-size: 1.9rem;
+}
+.movie-image {
+  flex-shrink: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 23vh;
+  width: 95%;
+  margin: 0 auto;
+}
+.movie-button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 25px 0;
+}
+.movie-button-container > * {
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+.add-list-button {
+  background-color: #141414;
+  border: 1px solid white;
+}
 .hidden {
   display: none;
 }

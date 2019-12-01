@@ -28,9 +28,19 @@ class Title extends React.Component {
       <Navbar/>
         {this.state.movie
           ? (
-            <div className="movie-image">
-              fghdsfgh
+            <>
+            <div className="movie-title">
+              {this.state.movie.title}
             </div>
+            <div
+              style={{ backgroundImage: `url("https://image.tmdb.org/t/p/w500${this.state.movie.poster_path}")` }}
+              className="movie-image"
+            />
+            <div className="movie-button-container">
+              <button className="play-button">Play</button>
+              <button className="add-list-button">My List</button>
+            </div>
+            </>
           ) : (
             null
           )}
