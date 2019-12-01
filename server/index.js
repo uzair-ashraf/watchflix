@@ -42,7 +42,7 @@ app.get('/api/movies', (req, res, next) => {
     .then(response => {
       res.json(response);
     })
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 app.listen(process.env.PORT, () => {

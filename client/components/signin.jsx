@@ -25,7 +25,6 @@ class SignIn extends React.Component {
   signIn(e) {
     e.preventDefault();
     if (!this.state.selectedUser) return;
-    console.log(this.state.selectedUser);
     this.props.dispatch(signInUser(this.state.selectedUser))
       .then(() => this.props.history.push('/dashboard'));
   }
