@@ -13,6 +13,7 @@ class Dashboard extends React.Component {
     };
   }
   componentDidMount() {
+    if (!this.props.user) this.props.history.push('/signin');
     this.props.dispatch(retrieveMovies())
       .then(() => this.setState({ dataLoaded: true }));
   }
@@ -37,9 +38,10 @@ class Dashboard extends React.Component {
 }
 
 const mapState = state => {
-  const { movies } = state;
+  const { movies, user } = state;
   return {
-    movies
+    movies,
+    user
   };
 };
 
