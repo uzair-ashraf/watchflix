@@ -154,6 +154,10 @@ button {
   background-color: #141414;
   border: 1px solid white;
 }
+.movie-rating {
+  text-align: center;
+  font-size: 2rem;
+}
 .hidden {
   display: none;
 }

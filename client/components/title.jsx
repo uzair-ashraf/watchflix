@@ -1,6 +1,7 @@
 import React from 'react';
 import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
+import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
 
 class Title extends React.Component {
@@ -40,6 +41,18 @@ class Title extends React.Component {
               <button className="play-button">Play</button>
               <button className="add-list-button">My List</button>
             </div>
+            <div className="movie-rating">
+              <StarRatingComponent
+                name="movie-rating"
+                editing={false}
+                starCount={5}
+                value={Math.floor(this.state.movie.vote_average / 2)}
+              />
+            </div>
+            <div className="movie-summary">
+
+            </div>
+
             </>
           ) : (
             null
