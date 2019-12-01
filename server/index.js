@@ -9,16 +9,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/users', (req, res, next) => {
   console.log('request incoming');
-  const sql = `
+  if (Object.keys(req.query).length === 0) {
+    const sql = `
     select "user_id",
            "username"
       from "users"
   `;
-  db.query(sql)
-    .then(result => {
-      res.json(result.rows);
-    })
-    .catch(error => next(error));
+    db.query(sql)
+      .then(result => {
+        res.json(result.rows);
+      })
+      .catch(error => next(error));
+  } else {
+    const { id } = req.query;
+    const sql = `
+    select "user_id",
+           "username"
+      from "users"
+      where "user_id" = ${id}
+    `;
+    db.query(sql)
+      .then(result => {
+        res.json(result.rows);
+      })
+      .catch(err => next(err));
+  }
+
 });
 
 app.get('/api/movies', (req, res, next) => {
