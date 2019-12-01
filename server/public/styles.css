@@ -137,7 +137,7 @@ button {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 23vh;
+  height: 34vh;
   width: 95%;
   margin: 0 auto;
 }
@@ -160,6 +160,17 @@ button {
 }
 .movie-summary {
   margin: 10px;
+}
+.movie-watch {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.movie-watch > * {
+  width: 100%;
+  height: 100%;
 }
 .hidden {
   display: none;
