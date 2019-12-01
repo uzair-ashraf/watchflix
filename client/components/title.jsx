@@ -1,6 +1,7 @@
 import React from 'react';
 import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
+import axios from 'axios';
 import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
 
@@ -20,6 +21,9 @@ class Title extends React.Component {
       return movie.id === titleId;
     });
     console.log(movieData);
+    axios.get(`/api/video?id=${titleId}`)
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
     this.setState({ movie: movieData, dataLoaded: true });
   }
   render() {
@@ -52,7 +56,6 @@ class Title extends React.Component {
             <div className="movie-summary">
               {this.state.movie.overview}
             </div>
-
             </>
           ) : (
             null

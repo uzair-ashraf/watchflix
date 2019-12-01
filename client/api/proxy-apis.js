@@ -19,7 +19,8 @@ const getGeneralMovieData = async function () {
   const responses = await Promise.all(randomGenreIds.map(id => {
     return movieDb.get('/discover/movie', {
       params: {
-        with_genres: id
+        with_genres: id,
+        append_to_response: 'videos'
       }
     });
   }));
@@ -36,6 +37,13 @@ const getGeneralMovieData = async function () {
   return responseData;
 };
 
+const getMovieTrailer = async function (id) {
+  const trailer = await movieDb.get(`/movie/${id}/videos`);
+  const { data } = trailer;
+  return data;
+};
+
 module.exports = {
-  getGeneralMovieData
+  getGeneralMovieData,
+  getMovieTrailer
 };

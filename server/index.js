@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./database');
-const { getGeneralMovieData } = require('../client/api/proxy-apis');
+const { getGeneralMovieData, getMovieTrailer } = require('../client/api/proxy-apis');
 const app = express();
 
 app.use(express.json());
@@ -42,6 +42,12 @@ app.get('/api/movies', (req, res, next) => {
     .then(response => {
       res.json(response);
     })
+    .catch(err => next(err));
+});
+app.get('/api/video', (req, res, next) => {
+  const { id } = req.query;
+  getMovieTrailer(id)
+    .then(result => res.json(result))
     .catch(err => next(err));
 });
 
