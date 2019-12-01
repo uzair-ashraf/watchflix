@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   render() {
@@ -20,9 +20,14 @@ class Navbar extends React.Component {
         );
         break;
     }
+    if (pathname.includes('/title/')) {
+      navbarSecondbutton = (
+        <Link to="/dashboard" className="movie-title-back">Back to Browse</Link>
+      );
+    }
     return (
       <div className="navbar">
-        <img src="assets/images/logo.png" alt="Watch flix logo" />
+        <img src="/assets/images/logo.png" alt="Watch flix logo" />
         {navbarSecondbutton}
       </div>
     );

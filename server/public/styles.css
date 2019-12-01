@@ -35,6 +35,7 @@ button {
   padding: .4rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .landing-page,.signin-form {
   height: 82vh;
@@ -114,6 +115,16 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   margin-right: 8px;
+}
+.movie-title-back {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #999999;
+  transition-duration: 200ms;
+}
+.movie-title-back:hover {
+  cursor: pointer;
+  color: white;
 }
 .hidden {
   display: none;

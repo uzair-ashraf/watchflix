@@ -13,7 +13,10 @@ class Dashboard extends React.Component {
     };
   }
   componentDidMount() {
-    if (!this.props.user) this.props.history.push('/signin');
+    if (!this.props.user) {
+      this.props.history.push('/signin');
+      return;
+    }
     this.props.dispatch(retrieveMovies())
       .then(() => this.setState({ dataLoaded: true }));
   }
