@@ -10,7 +10,8 @@ class Title extends React.Component {
     super(props);
     this.state = {
       movie: null,
-      dataLoaded: false
+      dataLoaded: false,
+      movieId: null
     };
   }
   componentDidMount() {
@@ -20,13 +21,10 @@ class Title extends React.Component {
     const movieData = results.find(movie => {
       return movie.id === titleId;
     });
-    console.log(movieData);
-    axios.get(`/api/video?id=${titleId}`)
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
-    this.setState({ movie: movieData, dataLoaded: true });
+    this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
   }
   render() {
+    const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);
     return (
       <>
       <LoadingScreen loaded={this.state.dataLoaded}/>
@@ -42,7 +40,7 @@ class Title extends React.Component {
               className="movie-image"
             />
             <div className="movie-button-container">
-              <button className="play-button">Play</button>
+              <button onClick={handleClick} className="play-button">Play</button>
               <button className="add-list-button">My List</button>
             </div>
             <div className="movie-rating">
