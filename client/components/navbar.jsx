@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from './search-bar';
 import { withRouter, Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
@@ -16,7 +17,7 @@ class Navbar extends React.Component {
         break;
       case '/dashboard':
         navbarSecondbutton = (
-          <input className="search-bar" placeholder="Search" />
+          <SearchBar/>
         );
         break;
     }
