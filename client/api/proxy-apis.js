@@ -43,7 +43,14 @@ const getMovieTrailer = async function (id) {
   return data;
 };
 
+const searchMovie = async function (query) {
+  const searchResults = await movieDb.get(`/search/movie?query=${query}`);
+  const { data } = searchResults;
+  return data;
+};
+
 module.exports = {
   getGeneralMovieData,
-  getMovieTrailer
+  getMovieTrailer,
+  searchMovie
 };

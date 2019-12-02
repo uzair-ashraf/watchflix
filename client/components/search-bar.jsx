@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class SearchBar extends React.Component {
   constructor(props) {
@@ -15,7 +16,11 @@ export default class SearchBar extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.query);
+    if (!this.state.query) return;
+    const query = encodeURI(this.state.query);
+    axios.get(`/api/search/?query=${query}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
   }
   render() {
     return (
