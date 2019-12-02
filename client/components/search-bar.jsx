@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class SearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,16 +11,13 @@ export default class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   trackQuery(e) {
-    console.log(e.target.value);
     this.setState({ query: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.query) return;
     const query = encodeURI(this.state.query);
-    axios.get(`/api/search/?query=${query}`)
-      .then(res => console.log(res.data))
-      .catch(err => console.error(err));
+    this.setState({ query: '' }, () => this.props.history.push(`/search/${query}`));
   }
   render() {
     return (
@@ -36,3 +33,5 @@ export default class SearchBar extends React.Component {
     );
   }
 }
+
+export default withRouter(SearchBar);

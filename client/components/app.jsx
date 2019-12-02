@@ -5,6 +5,7 @@ import SignIn from './signin';
 import Dashboard from './dashboard';
 import Watch from './watch';
 import Title from './title';
+import Search from './search';
 
 export default class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/title/:genreId/:titleId" component={Title} />
           <Route exact path="/watch/:titleId" component={Watch} />
+          <Route exact path="/search/:query" component={Search} />
         </Router>
       </div>
     );
