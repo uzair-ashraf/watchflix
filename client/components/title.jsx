@@ -1,7 +1,6 @@
 import React from 'react';
 import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
-import axios from 'axios';
 import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
 
@@ -64,9 +63,10 @@ class Title extends React.Component {
 }
 
 const mapState = state => {
-  const { movies } = state;
+  const { movies, search } = state;
   return {
-    movies
+    movies,
+    search
   };
 };
 
