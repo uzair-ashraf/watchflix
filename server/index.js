@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/users', (req, res, next) => {
-  console.log('request incoming');
   if (Object.keys(req.query).length === 0) {
     const sql = `
     select "user_id",

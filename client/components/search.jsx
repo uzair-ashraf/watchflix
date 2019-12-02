@@ -17,9 +17,6 @@ class Search extends React.Component {
     const { query } = this.props.match.params;
     this.props.dispatch(searchMovies(query))
       .then(() => this.setState({ dataLoaded: true, query }));
-    // axios.get(`/api/search/?query=${encodedQuery}`)
-    //   .then(res => console.log(res.data.results))
-    //   .catch(err => console.error(err));
 
   }
   render() {
@@ -40,13 +37,23 @@ class Search extends React.Component {
                     key={result.id}
                     id={result.id}
                     genreId={'search'}
+                    class={'search-movie'}
                     image={result.backdrop_path || result.poster_path}
                   />
                 );
               })
             )
             : (
-              'No results found'
+              <div
+                className="search-message"
+                style={{
+                  textAlign: 'center',
+                  margin: '30px 0',
+                  fontSize: '2rem'
+                }}
+              >
+                No results found
+              </div>
             )
         }
       </div>

@@ -9,7 +9,7 @@ class carouselItem extends React.Component {
     return (
       <div
         onClick={ handleClick }
-        className="movie"
+        className={this.props.class}
         style={{ backgroundImage: `url("https://image.tmdb.org/t/p/w500${this.props.image}")` }}
       />
     );
