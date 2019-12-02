@@ -1,3 +1,4 @@
+require('dotenv/config');
 const path = require('path');
 
 const srcPath = path.resolve(__dirname, 'client');
@@ -7,7 +8,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  entry: './client',
+  entry: srcPath,
   output: {
     path: publicPath
   },
@@ -30,18 +31,13 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     host: '0.0.0.0',
-    port: 3000,
+    port: process.env.WEBPACK_PORT,
     contentBase: publicPath,
     historyApiFallback: true,
     watchContentBase: true,
     stats: 'minimal',
     proxy: {
-      '/api': {
-        target: 'http://localhost',
-        headers: {
-          Host: 'watchflix.localhost'
-        }
-      }
+      '/api': `http://localhost:${process.env.PORT}`
     }
   }
 };

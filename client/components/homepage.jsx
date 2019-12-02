@@ -5,7 +5,6 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className="home-page-container">
-        <div className="home-page-filter"/>
         <Navbar/>
         <div className="landing-page">
           <div className="landing-main-header">
@@ -14,7 +13,9 @@ export default class HomePage extends React.Component {
           <div className="landing-main-subheader">
             Watch anywhere. Cancel anytime.
           </div>
-          <button className="landing-button">TRY 30 DAYS FREE</button>
+          <span>
+            <button className="landing-button">TRY 30 DAYS FREE</button>
+          </span>
         </div>
       </div>
     );
