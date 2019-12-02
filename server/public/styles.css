@@ -97,7 +97,7 @@ button {
   height: 19vh;
   margin-top: 9px;
 }
-.movie-group-genre {
+.movie-group-genre, .search-title {
   margin: 5px;
   color: #999999;
   font-weight: bold;

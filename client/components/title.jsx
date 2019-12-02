@@ -15,12 +15,21 @@ class Title extends React.Component {
   }
   componentDidMount() {
     const { genreId } = this.props.match.params;
-    const titleId = parseInt(this.props.match.params.titleId);
-    const { results } = this.props.movies[genreId].movies;
-    const movieData = results.find(movie => {
-      return movie.id === titleId;
-    });
-    this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+    if (genreId === 'search') {
+      const titleId = parseInt(this.props.match.params.titleId);
+      const { search } = this.props;
+      const movieData = search.find(movie => {
+        return movie.id === titleId;
+      });
+      this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+    } else {
+      const titleId = parseInt(this.props.match.params.titleId);
+      const { results } = this.props.movies[genreId].movies;
+      const movieData = results.find(movie => {
+        return movie.id === titleId;
+      });
+      this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+    }
   }
   render() {
     const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);

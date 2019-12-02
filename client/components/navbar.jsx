@@ -21,7 +21,7 @@ class Navbar extends React.Component {
         );
         break;
     }
-    if (pathname.includes('/title/') || pathname.includes('/watch/')) {
+    if (pathname.includes('/title/') || pathname.includes('/watch/') || pathname.includes('/search/')) {
       navbarSecondbutton = (
         <Link to="/dashboard" className="movie-title-back">Back to Browse</Link>
       );
