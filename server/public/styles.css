@@ -153,6 +153,7 @@ button {
 .add-list-button {
   background-color: #141414;
   border: 1px solid white;
+  display: flex;
 }
 .movie-rating {
   text-align: center;
