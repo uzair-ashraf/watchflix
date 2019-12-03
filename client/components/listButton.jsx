@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
 
-class ListButton extends React.Component {
+class ListButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

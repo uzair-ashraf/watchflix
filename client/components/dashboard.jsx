@@ -22,8 +22,6 @@ class Dashboard extends React.Component {
       .then(() => {
         this.props.dispatch(retrieveMovies())
           .then(() => {
-            console.log(this.props.list);
-            console.log(this.props.movies);
             this.setState({ dataLoaded: true });
           });
       });

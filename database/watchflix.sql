@@ -70,7 +70,7 @@ CREATE TABLE public.list (
     backdrop_path text,
     poster_path text,
     title character varying(255) NOT NULL,
-    video_average real NOT NULL,
+    vote_average real NOT NULL,
     overview text
 );
 
@@ -143,8 +143,16 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: list; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.list (listid, userid, id, backdrop_path, poster_path, title, video_average, overview) FROM stdin;
+COPY public.list (listid, userid, id, backdrop_path, poster_path, title, vote_average, overview) FROM stdin;
 1	1	347201	/6jjx8qsnMdevUIBzxtQbmQ6OOb6.jpg	/9GB2iXCPVP6bgyQXXPUchX8CD7p.jpg	Boruto: Naruto the Movie	7.5999999	Boruto is the son of the 7th Hokage Naruto who completely rejects his father. Behind this, he has feelings of wanting to surpass Naruto, who is respected as a hero. He ends up meeting his father's friend Sasuke, and requests to become... his apprentice!? The curtain on the story of the new generation written by Masashi Kishimoto rises!
+2	1	412117	/5mFcjZ58f9Pqg5RNv493XlfgzIX.jpg	/nYcaCNkB4EgVyvrXxxbklefDrGL.jpg	The Secret Life of Pets 2	6.5999999	Max the terrier must cope with some major life changes when his owner gets married and has a baby. When the family takes a trip to the countryside, nervous Max has numerous run-ins with canine-intolerant cows, hostile foxes and a scary turkey. Luckily for Max, he soon catches a break when he meets Rooster, a gruff farm dog who tries to cure the lovable pooch of his neuroses.
+3	1	567609	/j8uPZSPjKYzHlN2B4NhPQVWWZ5x.jpg	/vOl6shtL0wknjaIs6JdKCpcHvg8.jpg	Ready or Not	6.80000019	A bride's wedding night takes a sinister turn when her eccentric new in-laws force her to take part in a terrifying game.
+4	1	627474	/Ar0T8lVLZjY2k8SsylGorJ0gZiu.jpg	/hliYE00XaaQ4UOHyoU4gJm6t2wD.jpg	Staging Christmas	8	Lori stages homes for a living and her busiest season is Christmas! Though she normally only stages homes that are for sale, she’s intrigued when a wealthy widower named Elliot asks her to stage his home for the holidays to cheer up his daughter, Maddie. As Lori spends more and more time with Elliot and Maddie, she starts to feel like part of the family.
+5	1	475557	/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg	/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg	Joker	8.39999962	During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.
+6	1	458897	/a0xTB1vBxMGt6LGG4N7k1wO9lfL.jpg	/r5WnfZPYAVhBA9FuZGn6THWaGHD.jpg	Charlie's Angels	6.4000001	When a systems engineer blows the whistle on a dangerous technology, Charlie's Angels from across the globe are called into action, putting their lives on the line to protect society.
+7	1	68718	/qUcmEqnzIwlwZxSyTf3WliSfAjJ.jpg	/5WJnxuw41sddupf8cwOxYftuvJG.jpg	Django Unchained	8	With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.
+8	1	181808	/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg	/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg	Star Wars: The Last Jedi	7	Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.
+9	1	420818	/nRXO2SnOA75OsWhNhXstHB8ZmI3.jpg	/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg	The Lion King	7.0999999	Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.
 \.
 
 
@@ -162,7 +170,7 @@ COPY public.users (user_id, username) FROM stdin;
 -- Name: list_listid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.list_listid_seq', 1, true);
+SELECT pg_catalog.setval('public.list_listid_seq', 9, true);
 
 
 --

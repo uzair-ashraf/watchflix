@@ -16,6 +16,7 @@ class Title extends React.Component {
     };
     this.addToList = this.addToList.bind(this);
   }
+
   componentDidMount() {
     const { genreId } = this.props.match.params;
     if (genreId === 'search') {
@@ -24,7 +25,6 @@ class Title extends React.Component {
       const movieData = search.find(movie => {
         return movie.id === titleId;
       });
-      console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     } else if (genreId === 'list') {
       const titleId = parseInt(this.props.match.params.titleId);
@@ -32,7 +32,6 @@ class Title extends React.Component {
       const movieData = list.find(movie => {
         return movie.id === titleId;
       });
-      console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     } else {
       const titleId = parseInt(this.props.match.params.titleId);
@@ -40,7 +39,6 @@ class Title extends React.Component {
       const movieData = results.find(movie => {
         return movie.id === titleId;
       });
-      console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     }
   }
