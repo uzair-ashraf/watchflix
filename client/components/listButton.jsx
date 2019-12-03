@@ -4,12 +4,29 @@ import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
 
 class ListButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      makingRequest: false
+    };
+  }
   render() {
     const icon = this.props.inList
       ? <CheckIcon/>
       : <AddIcon/>;
+    const handleClick = () => {
+      this.setState({ makingRequest: true }, () => {
+        this.props.addToList();
+      });
+    };
     return (
-      <button className="add-list-button">{icon} My List</button>
+      <button
+        disabled={this.state.makingRequest}
+        className="add-list-button"
+        onClick={handleClick}
+      >
+        {icon} My List
+      </button>
     );
   }
 }

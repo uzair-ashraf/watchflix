@@ -37,9 +37,16 @@ app.get('/api/users', (req, res, next) => {
 });
 
 app.post('/api/list', (req, res, next) => {
-  const sql = `insert into list (userid, id, backdrop_path, poster_path, title, video_average, overview)
-VALUES
-( 1, 347201, '/6jjx8qsnMdevUIBzxtQbmQ6OOb6.jpg', '/9GB2iXCPVP6bgyQXXPUchX8CD7p.jpg', 'Boruto: Naruto the Movie', 7.6, '');`;
+  const { id } = req.query;
+  const { id: titleId, backdrop_path, overview, poster_path, title, vote_average } = req.body;
+  const sql = `insert into list (userid, id, backdrop_path, poster_path, title, vote_average, overview)
+              VALUES
+              ( $1, $2, $3, $4, $5, $6, $7);`;
+  db.query(sql, [id, titleId, backdrop_path, poster_path, title, vote_average, overview])
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
 });
 
 app.get('/api/list', (req, res, next) => {

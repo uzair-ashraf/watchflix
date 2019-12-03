@@ -3,6 +3,7 @@ import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
 import StarRatingComponent from 'react-star-rating-component';
 import ListButton from './listButton';
+import { addedToList } from '../actions/addedToListAction';
 import { connect } from 'react-redux';
 
 class Title extends React.Component {
@@ -13,6 +14,7 @@ class Title extends React.Component {
       dataLoaded: false,
       movieId: null
     };
+    this.addToList = this.addToList.bind(this);
   }
   componentDidMount() {
     const { genreId } = this.props.match.params;
@@ -42,9 +44,15 @@ class Title extends React.Component {
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     }
   }
+  addToList() {
+    this.props.dispatch(addedToList(this.props.user.user_id, this.state.movie));
+  }
   checkList() {
     if (!this.props.list.length) return false;
-    return this.props.list.some(movie => movie.id === this.state.movieId);
+    return this.props.list.some(movie => {
+      return movie.id === this.state.movieId;
+
+    });
   }
   render() {
     const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);
@@ -64,7 +72,7 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <ListButton inList={this.checkList()}/>
+              <ListButton inList={this.checkList()} addToList={this.addToList}/>
             </div>
             <div className="movie-rating">
               <StarRatingComponent
@@ -87,11 +95,12 @@ class Title extends React.Component {
 }
 
 const mapState = state => {
-  const { movies, search, list } = state;
+  const { movies, search, list, user } = state;
   return {
     movies,
     search,
-    list
+    list,
+    user
   };
 };
 
