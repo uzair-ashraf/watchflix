@@ -2,6 +2,7 @@ import React from 'react';
 import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
 import StarRatingComponent from 'react-star-rating-component';
+import ListButton from './listButton';
 import { connect } from 'react-redux';
 
 class Title extends React.Component {
@@ -51,7 +52,7 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <button className="add-list-button">My List</button>
+              <ListButton/>
             </div>
             <div className="movie-rating">
               <StarRatingComponent
