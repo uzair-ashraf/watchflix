@@ -24,6 +24,14 @@ class Title extends React.Component {
       });
       console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+    } else if (genreId === 'list') {
+      const titleId = parseInt(this.props.match.params.titleId);
+      const { list } = this.props;
+      const movieData = list.find(movie => {
+        return movie.id === titleId;
+      });
+      console.log(movieData);
+      this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     } else {
       const titleId = parseInt(this.props.match.params.titleId);
       const { results } = this.props.movies[genreId].movies;
@@ -75,10 +83,11 @@ class Title extends React.Component {
 }
 
 const mapState = state => {
-  const { movies, search } = state;
+  const { movies, search, list } = state;
   return {
     movies,
-    search
+    search,
+    list
   };
 };
 
