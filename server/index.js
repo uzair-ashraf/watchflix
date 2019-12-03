@@ -35,7 +35,11 @@ app.get('/api/users', (req, res, next) => {
   }
 
 });
-
+app.post('/api/list', (req, res, next) => {
+  const sql = `insert into list (userid, id, backdrop_path, poster_path, title, video_average, overview)
+VALUES
+( 1, 347201, '/6jjx8qsnMdevUIBzxtQbmQ6OOb6.jpg', '/9GB2iXCPVP6bgyQXXPUchX8CD7p.jpg', 'Boruto: Naruto the Movie', 7.6, '');`;
+});
 app.get('/api/movies', (req, res, next) => {
   getGeneralMovieData()
     .then(response => {

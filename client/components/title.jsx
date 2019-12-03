@@ -21,6 +21,7 @@ class Title extends React.Component {
       const movieData = search.find(movie => {
         return movie.id === titleId;
       });
+      console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     } else {
       const titleId = parseInt(this.props.match.params.titleId);
@@ -28,6 +29,7 @@ class Title extends React.Component {
       const movieData = results.find(movie => {
         return movie.id === titleId;
       });
+      console.log(movieData);
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     }
   }
