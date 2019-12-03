@@ -1,4 +1,4 @@
-import { GOT_INITIAL_LIST } from '../actions/getInitialListAction';
+import { GOT_INITIAL_LIST } from '../actions/types';
 
 export default function (state = [], action) {
   switch (action.type) {

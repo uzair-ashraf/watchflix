@@ -29,16 +29,32 @@ app.get('/api/users', (req, res, next) => {
     `;
     db.query(sql)
       .then(result => {
-        res.json(result.rows);
+        res.json(result.rows[0]);
       })
       .catch(err => next(err));
   }
 
 });
+
 app.post('/api/list', (req, res, next) => {
   const sql = `insert into list (userid, id, backdrop_path, poster_path, title, video_average, overview)
 VALUES
 ( 1, 347201, '/6jjx8qsnMdevUIBzxtQbmQ6OOb6.jpg', '/9GB2iXCPVP6bgyQXXPUchX8CD7p.jpg', 'Boruto: Naruto the Movie', 7.6, '');`;
+});
+
+app.get('/api/list', (req, res, next) => {
+  const { id } = req.query;
+  const sql = `
+  select *
+  from list
+  where userId = ${id};
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+
 });
 app.get('/api/movies', (req, res, next) => {
   getGeneralMovieData()

@@ -3,6 +3,7 @@ import Navbar from './navbar';
 import LoadingScreen from './loadingScreen';
 import Carousel from './carousel';
 import { retrieveMovies } from '../actions/retrieveMoviesAction';
+import { getInitialList } from '../actions/getInitialListAction';
 import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
@@ -17,15 +18,35 @@ class Dashboard extends React.Component {
       this.props.history.push('/signin');
       return;
     }
-    this.props.dispatch(retrieveMovies())
-      .then(() => this.setState({ dataLoaded: true }));
+    this.props.dispatch(getInitialList(this.props.user.user_id))
+      .then(() => {
+        this.props.dispatch(retrieveMovies())
+          .then(() => {
+            console.log(this.props.list);
+            console.log(this.props.movies);
+            this.setState({ dataLoaded: true });
+          });
+      });
+
   }
 
   render() {
+    const list = this.props.list.length
+      ? (
+        <Carousel
+          genre={'My List'}
+          genreId={'list'}
+          movies={this.props.list}
+        />
+      )
+      : (
+        null
+      );
     return (
       <>
         <LoadingScreen loaded={this.state.dataLoaded} />
         <Navbar />
+        {list}
         {this.props.movies.map((movie, index) => {
           return (
             <Carousel
@@ -42,10 +63,11 @@ class Dashboard extends React.Component {
 }
 
 const mapState = state => {
-  const { movies, user } = state;
+  const { movies, user, list } = state;
   return {
     movies,
-    user
+    user,
+    list
   };
 };
 
