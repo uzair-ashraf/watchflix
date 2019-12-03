@@ -42,6 +42,10 @@ class Title extends React.Component {
       this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
     }
   }
+  checkList() {
+    if (!this.props.list.length) return false;
+    return this.props.list.some(movie => movie.id === this.state.movieId);
+  }
   render() {
     const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);
     return (
@@ -60,7 +64,7 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <ListButton/>
+              <ListButton inList={this.checkList()}/>
             </div>
             <div className="movie-rating">
               <StarRatingComponent
