@@ -7,11 +7,23 @@ class ListButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      makingRequest: false
+      makingRequest: false,
+      inList: false
     };
   }
+  componentDidUpdate(prevProps) {
+    console.log(this.props.inList);
+    if (this.props.inList !== prevProps.inList) {
+      this.setState({ inList: this.props.inList });
+    }
+  }
+  componentDidMount() {
+    console.log(this.props.inList);
+    this.setState({ inList: this.props.inList });
+  }
   render() {
-    const icon = this.props.inList
+    console.log(this.props.inList);
+    const icon = this.state.inList
       ? <CheckIcon/>
       : <AddIcon/>;
     const handleClick = () => {

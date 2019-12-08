@@ -12,12 +12,14 @@ class Title extends React.Component {
     this.state = {
       movie: null,
       dataLoaded: false,
-      movieId: null
+      movieId: null,
+      inList: false
     };
     this.addToList = this.addToList.bind(this);
   }
 
   componentDidMount() {
+    this.checkList();
     const { genreId } = this.props.match.params;
     if (genreId === 'search') {
       const titleId = parseInt(this.props.match.params.titleId);
@@ -43,14 +45,19 @@ class Title extends React.Component {
     }
   }
   addToList() {
-    this.props.dispatch(addedToList(this.props.user.user_id, this.state.movie));
+    this.props.dispatch(addedToList(this.props.user.user_id, this.state.movie))
+      .then(() => this.setState({ inList: true }));
   }
   checkList() {
-    if (!this.props.list.length) return false;
-    return this.props.list.some(movie => {
+    if (!this.props.list.length) {
+      this.setState({ inList: false });
+      return;
+    }
+    const inList = this.props.list.some(movie => {
       return movie.id === this.state.movieId;
-
     });
+    console.log('inlistvariable', inList);
+    this.setState({ inList });
   }
   render() {
     const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);
@@ -70,7 +77,7 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <ListButton inList={this.checkList()} addToList={this.addToList}/>
+              <ListButton inList={this.state.inList} addToList={this.addToList}/>
             </div>
             <div className="movie-rating">
               <StarRatingComponent
