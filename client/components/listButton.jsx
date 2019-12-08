@@ -1,6 +1,7 @@
 import React from 'react';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
+import { CircularProgress } from '@material-ui/core';
 
 class ListButton extends React.PureComponent {
   constructor(props) {
@@ -19,9 +20,11 @@ class ListButton extends React.PureComponent {
     }
   }
   render() {
-    const icon = this.state.inList
-      ? <CheckIcon/>
-      : <AddIcon/>;
+    const icon = this.state.makingRequest
+      ? <CircularProgress color='inherit' size='1.4rem'/>
+      : this.state.inList
+        ? <CheckIcon/>
+        : <AddIcon/>;
     const handleClick = this.state.inList
       ? () => {
         this.setState({ makingRequest: true }, () => {
