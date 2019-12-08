@@ -1,4 +1,4 @@
-import { GOT_INITIAL_LIST, ADDED_TO_LIST } from '../actions/types';
+import { GOT_INITIAL_LIST, ADDED_TO_LIST, DELETED_FROM_LIST } from '../actions/types';
 
 export default function (state = [], action) {
   switch (action.type) {
@@ -6,6 +6,8 @@ export default function (state = [], action) {
       return action.payload;
     case ADDED_TO_LIST:
       return state.concat(action.payload);
+    case DELETED_FROM_LIST:
+      return state.filter(movie => movie.id !== action.payload.movieId);
     default:
       return state;
   }

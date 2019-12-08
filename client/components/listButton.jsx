@@ -15,18 +15,24 @@ class ListButton extends React.PureComponent {
   }
   componentDidUpdate(prevProps) {
     if (this.props.inList !== prevProps.inList) {
-      this.setState({ inList: this.props.inList });
+      this.setState({ inList: this.props.inList, makingRequest: false });
     }
   }
   render() {
     const icon = this.state.inList
       ? <CheckIcon/>
       : <AddIcon/>;
-    const handleClick = () => {
-      this.setState({ makingRequest: true }, () => {
-        this.props.addToList();
-      });
-    };
+    const handleClick = this.state.inList
+      ? () => {
+        this.setState({ makingRequest: true }, () => {
+          this.props.deleteFromList();
+        });
+      }
+      : () => {
+        this.setState({ makingRequest: true }, () => {
+          this.props.addToList();
+        });
+      };
     return (
       <button
         disabled={this.state.makingRequest}

@@ -4,6 +4,7 @@ import Navbar from './navbar';
 import StarRatingComponent from 'react-star-rating-component';
 import ListButton from './listButton';
 import { addedToList } from '../actions/addedToListAction';
+import { deletedFromList } from '../actions/deletedFromListAction';
 import { connect } from 'react-redux';
 
 class Title extends React.Component {
@@ -16,6 +17,7 @@ class Title extends React.Component {
       inList: false
     };
     this.addToList = this.addToList.bind(this);
+    this.deleteFromList = this.deleteFromList.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +54,10 @@ class Title extends React.Component {
     this.props.dispatch(addedToList(this.props.user.user_id, this.state.movie))
       .then(() => this.setState({ inList: true }));
   }
+  deleteFromList() {
+    this.props.dispatch(deletedFromList(this.props.user.user_id, this.state.movieId))
+      .then(() => this.checkList());
+  }
   checkList() {
     if (!this.props.list.length) {
       this.setState({ inList: false });
@@ -80,7 +86,11 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <ListButton inList={this.state.inList} addToList={this.addToList}/>
+              <ListButton
+                inList={this.state.inList}
+                addToList={this.addToList}
+                deleteFromList={this.deleteFromList}
+              />
             </div>
             <div className="movie-rating">
               <StarRatingComponent

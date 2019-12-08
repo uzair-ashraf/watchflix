@@ -48,6 +48,18 @@ app.post('/api/list', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+app.delete('/api/list', (req, res, next) => {
+  const { userId, movieId } = req.body;
+  const sql = `delete from list where userid = $1 AND id = $2;`;
+  db.query(sql, [userId, movieId])
+    .then(result => {
+      res.json({
+        success: true,
+        movieId
+      });
+    })
+    .catch(err => next(err));
+});
 
 app.get('/api/list', (req, res, next) => {
   const { id } = req.query;
