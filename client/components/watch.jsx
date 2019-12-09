@@ -16,6 +16,10 @@ export default class Watch extends React.Component {
     const { titleId } = this.props.match.params;
     axios.get(`/api/video?id=${titleId}`)
       .then(res => {
+        if (!res.data.results.length) {
+          this.setState({ dataLoaded: true });
+          return;
+        }
         const trailer = res.data.results.find(trailer => trailer.site === 'YouTube');
         this.setState({ trailer });
       })
@@ -39,7 +43,7 @@ export default class Watch extends React.Component {
               />
             )
             : (
-              null
+              'This movie is not available in your country.'
             )
           }
         </div>

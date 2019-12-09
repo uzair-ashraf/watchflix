@@ -29,13 +29,52 @@ app.get('/api/users', (req, res, next) => {
     `;
     db.query(sql)
       .then(result => {
-        res.json(result.rows);
+        res.json(result.rows[0]);
       })
       .catch(err => next(err));
   }
 
 });
 
+app.post('/api/list', (req, res, next) => {
+  const { id } = req.query;
+  const { id: titleId, backdrop_path, overview, poster_path, title, vote_average } = req.body;
+  const sql = `insert into list (userid, id, backdrop_path, poster_path, title, vote_average, overview)
+              VALUES
+              ( $1, $2, $3, $4, $5, $6, $7);`;
+  db.query(sql, [id, titleId, backdrop_path, poster_path, title, vote_average, overview])
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+app.delete('/api/list', (req, res, next) => {
+  const { userId, movieId } = req.body;
+  const sql = `delete from list where userid = $1 AND id = $2;`;
+  db.query(sql, [userId, movieId])
+    .then(result => {
+      res.json({
+        success: true,
+        movieId
+      });
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/list', (req, res, next) => {
+  const { id } = req.query;
+  const sql = `
+  select *
+  from list
+  where userId = ${id};
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+
+});
 app.get('/api/movies', (req, res, next) => {
   getGeneralMovieData()
     .then(response => {

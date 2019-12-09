@@ -2,6 +2,9 @@ import React from 'react';
 import LoadingScreen from './loadingScreen';
 import Navbar from './navbar';
 import StarRatingComponent from 'react-star-rating-component';
+import ListButton from './listButton';
+import { addedToList } from '../actions/addedToListAction';
+import { deletedFromList } from '../actions/deletedFromListAction';
 import { connect } from 'react-redux';
 
 class Title extends React.Component {
@@ -10,9 +13,13 @@ class Title extends React.Component {
     this.state = {
       movie: null,
       dataLoaded: false,
-      movieId: null
+      movieId: null,
+      inList: false
     };
+    this.addToList = this.addToList.bind(this);
+    this.deleteFromList = this.deleteFromList.bind(this);
   }
+
   componentDidMount() {
     const { genreId } = this.props.match.params;
     if (genreId === 'search') {
@@ -21,15 +28,45 @@ class Title extends React.Component {
       const movieData = search.find(movie => {
         return movie.id === titleId;
       });
-      this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+      this.loadMovieData(movieData, titleId);
+    } else if (genreId === 'list') {
+      const titleId = parseInt(this.props.match.params.titleId);
+      const { list } = this.props;
+      const movieData = list.find(movie => {
+        return movie.id === titleId;
+      });
+      this.loadMovieData(movieData, titleId);
     } else {
       const titleId = parseInt(this.props.match.params.titleId);
       const { results } = this.props.movies[genreId].movies;
       const movieData = results.find(movie => {
         return movie.id === titleId;
       });
-      this.setState({ movie: movieData, dataLoaded: true, movieId: titleId });
+      this.loadMovieData(movieData, titleId);
     }
+  }
+  loadMovieData(movieData, titleId) {
+    this.setState({ movie: movieData, dataLoaded: true, movieId: titleId }, () => {
+      this.checkList();
+    });
+  }
+  addToList() {
+    this.props.dispatch(addedToList(this.props.user.user_id, this.state.movie))
+      .then(() => this.setState({ inList: true }));
+  }
+  deleteFromList() {
+    this.props.dispatch(deletedFromList(this.props.user.user_id, this.state.movieId))
+      .then(() => this.checkList());
+  }
+  checkList() {
+    if (!this.props.list.length) {
+      this.setState({ inList: false });
+      return;
+    }
+    const inList = this.props.list.some(movie => {
+      return movie.id === this.state.movieId;
+    });
+    this.setState({ inList });
   }
   render() {
     const handleClick = () => this.props.history.push(`/watch/${this.state.movieId}`);
@@ -49,7 +86,11 @@ class Title extends React.Component {
             />
             <div className="movie-button-container">
               <button onClick={handleClick} className="play-button">Play</button>
-              <button className="add-list-button">My List</button>
+              <ListButton
+                inList={this.state.inList}
+                addToList={this.addToList}
+                deleteFromList={this.deleteFromList}
+              />
             </div>
             <div className="movie-rating">
               <StarRatingComponent
@@ -72,10 +113,12 @@ class Title extends React.Component {
 }
 
 const mapState = state => {
-  const { movies, search } = state;
+  const { movies, search, list, user } = state;
   return {
     movies,
-    search
+    search,
+    list,
+    user
   };
 };
 

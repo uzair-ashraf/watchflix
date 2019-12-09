@@ -18,9 +18,13 @@ SET row_security = off;
 
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_username_key;
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+ALTER TABLE ONLY public.list DROP CONSTRAINT list_pkey;
 ALTER TABLE public.users ALTER COLUMN user_id DROP DEFAULT;
+ALTER TABLE public.list ALTER COLUMN listid DROP DEFAULT;
 DROP SEQUENCE public.users_user_id_seq;
 DROP TABLE public.users;
+DROP SEQUENCE public.list_listid_seq;
+DROP TABLE public.list;
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -56,6 +60,42 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: list; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.list (
+    listid integer NOT NULL,
+    userid smallint NOT NULL,
+    id integer NOT NULL,
+    backdrop_path text,
+    poster_path text,
+    title character varying(255) NOT NULL,
+    vote_average real NOT NULL,
+    overview text
+);
+
+
+--
+-- Name: list_listid_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.list_listid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: list_listid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.list_listid_seq OWNED BY public.list.listid;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -86,10 +126,27 @@ ALTER SEQUENCE public.users_user_id_seq OWNED BY public.users.user_id;
 
 
 --
+-- Name: list listid; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.list ALTER COLUMN listid SET DEFAULT nextval('public.list_listid_seq'::regclass);
+
+
+--
 -- Name: users user_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_user_id_seq'::regclass);
+
+
+--
+-- Data for Name: list; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.list (listid, userid, id, backdrop_path, poster_path, title, vote_average, overview) FROM stdin;
+1	1	347201	/6jjx8qsnMdevUIBzxtQbmQ6OOb6.jpg	/9GB2iXCPVP6bgyQXXPUchX8CD7p.jpg	Boruto: Naruto the Movie	7.5999999	Boruto is the son of the 7th Hokage Naruto who completely rejects his father. Behind this, he has feelings of wanting to surpass Naruto, who is respected as a hero. He ends up meeting his father's friend Sasuke, and requests to become... his apprentice!? The curtain on the story of the new generation written by Masashi Kishimoto rises!
+10	1	186737	/taqjIRW9geJ24d1Rss42dn7Dqjq.jpg	/vZblBlLH57bFkL9ZLilurcWsPBE.jpg	Girls Dead Monster starring LiSA Tour 2010- Keep The Angel Beats!	5.30000019	A national concert tour featuring LiSA titled "Girls Dead Monster starring LiSA Tour 2010: Keep The Angel Beats!" was held across Japan August 3 and September 2, 2010; all of the venues ultimately sold out.  A BD/DVD video album box set titled Girls Dead Monster starring LiSA Tour 2010 Final: Keep The Angel Beats! of the tour's final performance was released on June 1, 2011 by Key Sounds Label bearing the catalog numbers KSLV-0001–0003.  The last concert of Girls Dead Monster was held on December 27, 2010 at an event called "Girls Dead Monster Last Live: Final Operation" featuring Marina and LiSA at the Tokyo International Forum.
+\.
 
 
 --
@@ -99,14 +156,33 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 COPY public.users (user_id, username) FROM stdin;
 1	uzinatorcl
 2	thebearingedge
+3	timelikeclosure
+4	scbowler
+5	zhiwutian
+6	codingcodymiller
 \.
+
+
+--
+-- Name: list_listid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.list_listid_seq', 10, true);
 
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 6, true);
+
+
+--
+-- Name: list list_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.list
+    ADD CONSTRAINT list_pkey PRIMARY KEY (listid);
 
 
 --
