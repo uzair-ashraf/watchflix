@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server",
+    "start": "node -r dotenv/config server/index.js",
     "server": "nodemon -r dotenv/config server/index.js",
     "db:export": ". ./.env; pg_dump --clean --no-owner $DATABASE_URL > database/watchflix.sql",
     "db:import": ". ./.env; psql $DATABASE_URL < database/watchflix.sql"
